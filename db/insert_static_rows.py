@@ -1,4 +1,4 @@
-from create_tables import teams, players, draft_salaries, roster, player_gamelog
+from create_tables import teams, players, draft_salaries, roster, player_gamelog, deadlines
 from insert_rows import insert_row
 from nba_api.stats.static import teams as nba_teams_api
 from nba_api.stats.static import players as nba_players_api
@@ -46,3 +46,10 @@ for key, values in df.to_dict(orient='index').items():
     position = values['POS'],
     team = values['TEAM'],
     salary = values['TOTAL'])
+    
+df = pd.read_excel('deadlines.xlsx')
+for key, values in df.to_dict(orient='index').items():
+    insert_row(deadlines,
+    gameweek = values['Gameweek'],
+    day = values['Day'],
+    deadline = values['Deadline'])

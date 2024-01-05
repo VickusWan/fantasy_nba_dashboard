@@ -45,57 +45,66 @@ class roster(db.Model):
     season = db.Column(db.Integer, nullable=False)
     league_id = db.Column(db.String(255), nullable=False)
     player_name = db.Column(db.String(255), nullable=False)
-    nickname = db.Column(db.String(255), nullable=False)
-    player_slug = db.Column(db.String(255), nullable=False)
-    jersey_num = db.Column(db.Integer, nullable=False)
-    position = db.Column(db.String(255), nullable=False)
-    height = db.Column(db.String(10), nullable=False)
-    weight = db.Column(db.Integer, nullable=False)
-    birth_date = db.Column(db.String(255), nullable=False)
-    age = db.Column(db.Integer, nullable=False)
-    experience = db.Column(db.Integer, nullable=False)
+    nickname = db.Column(db.String(255), nullable=True)
+    player_slug = db.Column(db.String(255), nullable=True)
+    jersey_num = db.Column(db.Integer, nullable=True)
+    position = db.Column(db.String(255), nullable=True)
+    height = db.Column(db.String(10), nullable=True)
+    weight = db.Column(db.Integer, nullable=True)
+    birth_date = db.Column(db.String(255), nullable=True)
+    age = db.Column(db.Integer, nullable=True)
+    experience = db.Column(db.String(255), nullable=True)
+    college_school = db.Column(db.String(255), nullable=True)
     player_id = db.Column(db.String(255), primary_key=True)
-    how_acquired = db.Column(db.String(255), nullable=False)
+    how_acquired = db.Column(db.String(255), nullable=True)
 
     def __repr__(self):
         return f'<roster {self.name}>'
 
 class player_gamelog(db.Model):
     
-    season_id = db.Column(db.String(255), nullable=False)
-    player_id = db.Column(db.String(255), nullable=False)
+    season_id = db.Column(db.String(255), nullable=True)
+    player_id = db.Column(db.String(255), primary_key=True)
     game_id = db.Column(db.String(255), primary_key=True)
-    game_date = db.Column(db.String(255), nullable=False)
-    matchup = db.Column(db.String(255), nullable=False)
-    win_loss = db.Column(db.String(5), nullable=False)
-    minutes = db.Column(db.Integer, nullable=False)
     
-    fgm = db.Column(db.Integer, nullable=False)
-    fga = db.Column(db.Integer, nullable=False)
-    fg_pct = db.Column(db.Float, nullable=False)
+    game_date = db.Column(db.String(255), nullable=True)
+    matchup = db.Column(db.String(255), nullable=True)
+    win_loss = db.Column(db.String(5), nullable=True)
+    minutes = db.Column(db.Integer, nullable=True)
     
-    fg3m = db.Column(db.Integer, nullable=False)
-    fg3a = db.Column(db.Integer, nullable=False)
-    fg3_pct = db.Column(db.Float, nullable=False)
+    fgm = db.Column(db.Integer, nullable=True)
+    fga = db.Column(db.Integer, nullable=True)
+    fg_pct = db.Column(db.Float, nullable=True)
     
-    ftm = db.Column(db.Integer, nullable=False)
-    fta = db.Column(db.Integer, nullable=False)
-    ft_pct = db.Column(db.Float, nullable=False)
+    fg3m = db.Column(db.Integer, nullable=True)
+    fg3a = db.Column(db.Integer, nullable=True)
+    fg3_pct = db.Column(db.Float, nullable=True)
     
-    oreb = db.Column(db.Integer, nullable=False)
-    dreb = db.Column(db.Integer, nullable=False)
-    reb = db.Column(db.Integer, nullable=False)
+    ftm = db.Column(db.Integer, nullable=True)
+    fta = db.Column(db.Integer, nullable=True)
+    ft_pct = db.Column(db.Float, nullable=True)
     
-    ast = db.Column(db.Integer, nullable=False)
-    stl = db.Column(db.Integer, nullable=False)
-    blk = db.Column(db.Integer, nullable=False)
-    tov = db.Column(db.Integer, nullable=False)
-    pf = db.Column(db.Integer, nullable=False)
+    oreb = db.Column(db.Integer, nullable=True)
+    dreb = db.Column(db.Integer, nullable=True)
+    reb = db.Column(db.Integer, nullable=True)
     
-    pts = db.Column(db.Integer, nullable=False)
-    plus_minus = db.Column(db.Integer, nullable=False)
-    video_available = db.Column(db.Integer, nullable=False)
+    ast = db.Column(db.Integer, nullable=True)
+    stl = db.Column(db.Integer, nullable=True)
+    blk = db.Column(db.Integer, nullable=True)
+    tov = db.Column(db.Integer, nullable=True)
+    pf = db.Column(db.Integer, nullable=True)
+    
+    pts = db.Column(db.Integer, nullable=True)
+    plus_minus = db.Column(db.Integer, nullable=True)
+    video_available = db.Column(db.Integer, nullable=True)
 
     def __repr__(self):
         return f'<player_gamelog {self.name}>'
 
+class deadlines(db.Model):
+    gameweek = db.Column(db.Integer, nullable=True)
+    day = db.Column(db.Integer, nullable=True)
+    deadline = db.Column(db.String(255), primary_key=True)
+    
+    def __repr__(self):
+        return f'<deadlines {self.name}>'
