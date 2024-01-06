@@ -23,7 +23,11 @@ fantasy_team = ('Stephen Curry', 'Jamal Murray', 'Shai Gilgeous-Alexander', 'Aus
  'Andrew Wiggins', 'Bennedict Mathurin','Victor Wembanyama', 'Nikola Jokic')
 
 def insert_today_games():
-    player_info = select_rows.select_all_where_in('players', 'full_name', fantasy_team)
+    full_players = []
+    for player in select_rows.select_all('draft_salaries'):
+        if "'" not in player[1]:
+            full_players.append(player[1])
+    player_info = select_rows.select_all_where_in('players', 'full_name', full_players)
 
     for player in player_info:
         today_gamelog = playergamelog.PlayerGameLog(player_id=player[0], season='2023', date_from_nullable=today_date).get_dict()

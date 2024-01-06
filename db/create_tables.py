@@ -33,7 +33,8 @@ class players(db.Model):
 class draft_salaries(db.Model):
     rank = db.Column(db.Integer, primary_key=True)
     player_name = db.Column(db.String(255), nullable=False)
-    position = db.Column(db.String(255), nullable=False)
+    five_position = db.Column(db.String(255), nullable=False)
+    three_position = db.Column(db.String(255), nullable=False)
     team = db.Column(db.String(4), nullable=False)
     salary = db.Column(db.Float, nullable=False)
 

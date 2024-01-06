@@ -15,6 +15,6 @@ During the season, your fantasy players will be allocated points based on their 
 - For each point scored: 1
 - For each rebound: 1.2
 - For each assist: 1.5
-- For each block: 3
-- For each steal: 3
+- For each block: 2
+- For each steal: 2
 - For each turnover: -1

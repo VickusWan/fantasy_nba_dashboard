@@ -17,7 +17,13 @@ app.app_context().push()
 fantasy_team = ('Stephen Curry', 'Jamal Murray', 'Shai Gilgeous-Alexander', 'Austin Reaves', 'Demar Derozan', 'Jimmy Butler', 
  'Andrew Wiggins', 'Bennedict Mathurin','Victor Wembanyama', 'Nikola Jokic')
 
-player_info = select_rows.select_all_where_in('players', 'full_name', fantasy_team)
+full_players = []
+for player in select_rows.select_all('draft_salaries'):
+    if "'" not in player[1]:
+        full_players.append(player[1])
+    
+
+player_info = select_rows.select_all_where_in('players', 'full_name', tuple(full_players))
 
 for player in player_info:
     gamelogs = playergamelog.PlayerGameLog(player_id=player[0], season='2023').get_dict()
