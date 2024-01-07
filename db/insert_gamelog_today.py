@@ -22,6 +22,9 @@ app.app_context().push()
 fantasy_team = ('Stephen Curry', 'Jamal Murray', 'Shai Gilgeous-Alexander', 'Austin Reaves', 'Demar Derozan', 'Jimmy Butler', 
  'Andrew Wiggins', 'Bennedict Mathurin','Victor Wembanyama', 'Nikola Jokic')
 
+def test():
+    print('test')
+
 def insert_today_games():
     full_players = []
     for player in select_rows.select_all('draft_salaries'):
